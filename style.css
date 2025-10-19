@@ -225,9 +225,74 @@ main .dd-header {
   flex-shrink: 0;
 }
 
-.dd-header select {
-  padding: 8px;
+/*Nut lua chon con giap */
+
+.item-select {
+  width: 100px;
+  position: relative;
 }
+
+.selected {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #4a90e2;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.divider {
+  width: 1px;
+  height: 22px;
+  background-color: #ccc;
+  margin: 0 8px;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid green;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background: white;
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  z-index: 10;
+}
+
+.options li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.options li:hover,
+.options li.selected-option {
+  background-color: #2b6ef3;
+  border-radius: 8px;
+}
+
+.icon-select.open .options {
+  display: block;
+}
+
+/*----*/
 
 .dd-header button {
   color: white;
@@ -239,7 +304,9 @@ main .dd-header {
 }
 
 .add-button {
+  display: flex;
   padding-right: 40%;
+  gap: 10px;
 }
 
 .dd-content {
@@ -253,10 +320,13 @@ main .dd-header {
 
 footer {
   grid-area: footer;
-  text-align: center;
-  background-color: #f8e3b6;
-  margin-top: 10px;
+  background-color: #f7dfae;
+  margin-top: 8px;
   color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 footer a {
