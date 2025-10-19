@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+  font-family: "Times New Roman", Times, serif;
   background-color: #f6f7fb;
   display: block;
 }
@@ -21,18 +21,19 @@ h1 {
   display: grid;
   grid-template-areas:
     "header header"
-    "nav nav"
     "side main"
     "footer footer";
   grid-template-columns: 256px 1fr;
-  grid-template-rows: 66px 40px auto 33px;
+  grid-template-rows: 66px auto 33px;
   min-height: 100vh;
   background-color: white;
   border: 1px solid #ccc;
+  position: relative;
 }
 
 header {
   grid-area: header;
+  background: linear-gradient(to bottom, #3d79e9, #87cefa);
   font-size: 22px;
   display: flex;
   align-items: center;
@@ -44,26 +45,35 @@ header {
 }
 
 nav {
-  grid-area: nav;
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  justify-self: center;
-  gap: 60px;
   border-radius: 6px;
   padding: 0 20px;
+  height: 30px;
+  z-index: 10;
+  margin-bottom: 200px;
 }
 
 aside {
   grid-area: side;
+  margin-top: 30px;
 }
 
 aside h3 {
   text-align: center;
+  color: #ffde88;
+  background-color: #e99130;
 }
 
 main {
   grid-area: main;
+  margin-top: 30px;
 }
 
 main .main-header {
