@@ -31,6 +31,8 @@ h1 {
   position: relative;
 }
 
+/* Header */
+
 header {
   grid-area: header;
   background: linear-gradient(to bottom, #3d79e9, #87cefa);
@@ -45,6 +47,8 @@ header {
   border-radius: 5px;
   box-shadow: 3px 3px #b2b2b2;
 }
+
+/* NAVIGATION */
 
 nav {
   position: absolute;
@@ -71,6 +75,8 @@ nav a:visited {
   color: orange;
 }
 
+/* SIDE */
+
 aside {
   grid-area: side;
   margin-top: 30px;
@@ -89,6 +95,10 @@ aside button {
   color: #bca9af;
 }
 
+.news {
+  margin-bottom: 3px;
+}
+
 .news-header {
   display: flex;
   justify-content: space-between;
@@ -98,13 +108,21 @@ aside button {
   border-radius: 3px;
 }
 
+.news p {
+  color: #1b45df;
+}
+
 .toggle-btn-left {
   cursor: pointer;
 }
 
 .toggle-btn-right {
   cursor: ns-resize;
+  font-size: 22px;
+  font-weight: 700;
 }
+
+/* MAIN */
 
 main {
   grid-area: main;
@@ -116,6 +134,8 @@ main .main-header {
   flex-direction: row;
   justify-content: space-between;
 }
+
+/* FOOTER */
 
 footer {
   grid-area: footer;
