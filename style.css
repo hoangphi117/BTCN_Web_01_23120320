@@ -78,8 +78,32 @@ aside {
 
 aside h3 {
   text-align: center;
-  color: #ffde88;
-  background-color: #e99130;
+  color: #bca9af;
+  margin: 0;
+}
+
+aside button {
+  padding: 2px 4px;
+  border: none;
+  background: none;
+  color: #bca9af;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5e4cd;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.toggle-btn-left {
+  cursor: pointer;
+}
+
+.toggle-btn-right {
+  cursor: ns-resize;
 }
 
 main {
