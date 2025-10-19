@@ -205,7 +205,7 @@ main .main-header h2 {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #eaf1ff;
+  background-color: #9dbaf5;
   color: black;
   min-width: 180px;
   border-radius: 6px;
@@ -258,6 +258,10 @@ main .main-header h2 {
 
 .text-format #edit-highlight:hover {
   cursor: pointer;
+}
+
+.highlight {
+  padding: 2px 0px;
 }
 
 /* Drag & Drop */
