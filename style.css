@@ -8,6 +8,7 @@ body {
   font-family: "Times New Roman", Times, serif;
   background-color: #f6f7fb;
   display: block;
+  height: 100%;
 }
 
 h1 {
@@ -17,6 +18,7 @@ h1 {
 .container {
   width: 100%;
   max-width: 1280px;
+  height: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-areas:
@@ -108,6 +110,7 @@ aside button {
   background-color: #f5e4cd;
   padding: 5px 10px;
   border-radius: 3px;
+  font-size: 24px;
 }
 
 .news p {
@@ -126,14 +129,20 @@ aside button {
 
 /* MAIN */
 
+/* Process Text */
+
 main {
   grid-area: main;
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 .process-text {
   border: 1px solid black;
   border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .content {
@@ -180,7 +189,7 @@ main .main-header h2 {
   align-items: center;
 }
 
-.text-format #edit-hightlight {
+.text-format #edit-highlight {
   background: #1b45df;
   border: none;
   border-radius: 30px;
@@ -191,8 +200,37 @@ main .main-header h2 {
   cursor: pointer;
 }
 
-.text-format #edit-hightlight:hover {
+.text-format #edit-highlight:hover {
   cursor: pointer;
+}
+
+/* Drag & Drop */
+
+main .drag-drop {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-radius: 4px;
+  border: 1px solid black;
+  overflow: auto;
+}
+
+main .dd-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #b8e4ff, #707fd7);
+  color: white;
+  padding: 10px 20px;
+  flex-shrink: 0;
+}
+
+.dd-content {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+  padding: 10px;
 }
 
 /* FOOTER */
