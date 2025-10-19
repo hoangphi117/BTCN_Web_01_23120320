@@ -51,6 +51,7 @@ nav {
   top: 56px;
   left: 50%;
   transform: translateX(-50%);
+  background: #bcd2f9;
   width: 500px;
   display: flex;
   justify-content: space-between;
@@ -60,6 +61,14 @@ nav {
   height: 30px;
   z-index: 10;
   margin-bottom: 200px;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a:visited {
+  color: orange;
 }
 
 aside {
