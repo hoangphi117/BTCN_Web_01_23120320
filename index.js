@@ -143,3 +143,45 @@ $(function () {
     }
   });
 });
+
+//drag-and-drop
+
+$(function () {
+  let dragged_element = null;
+  let placeholder = null;
+  let offsetX, offsetY;
+
+  $(".toggle-move").on("mousedown", function (e) {
+    dragged_element = $(this).closest(".news");
+    const pos = dragged_element.offset();
+
+    offsetX = e.pageX - pos.left;
+    offsetY = e.pageY - pos.top;
+
+    // placeholder
+    placeholder = dragged_element.clone();
+    placeholder.css({
+      opacity: "0.3",
+      visibility: "visible",
+    });
+
+    dragged_element.css({
+      position: "fixed",
+      width: dragged_element.outerWidth(),
+      "z-index": "1000",
+      "pointer-events": "none",
+      opacity: "0.5",
+    });
+
+    // chen placeholder vao vi tri cu~
+    dragged_element.after(placeholder);
+
+    dragged_element.css({
+      left: e.pageX - offsetX,
+      top: e.pageY - offsetY,
+    });
+
+    e.preventDefault();
+    e.stopPropagation();
+  });
+});
