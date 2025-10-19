@@ -80,6 +80,7 @@ nav a:visited {
 aside {
   grid-area: side;
   margin-top: 30px;
+  margin-right: 10px;
 }
 
 aside h3 {
@@ -97,6 +98,7 @@ aside button {
 
 .news {
   margin-bottom: 3px;
+  border: 1px solid #bca9af;
 }
 
 .news-header {
