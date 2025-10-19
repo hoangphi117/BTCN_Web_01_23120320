@@ -129,8 +129,16 @@ aside button {
 main {
   grid-area: main;
   margin-top: 30px;
+}
+
+.process-text {
   border: 1px solid black;
   border-radius: 4px;
+}
+
+.content {
+  padding: 10px;
+  font-size: 24px;
 }
 
 main .main-header {
@@ -138,14 +146,53 @@ main .main-header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background: linear-gradient(to bottom, #b8e4ff, #707fd7);
   color: white;
   padding: 5px 20px;
+}
+
+main .main-header h2 {
+  font-size: 20px;
+}
+
+.text-controls button {
+  background-color: #5078e7;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+}
+
+.text-controls button:hover {
+  cursor: pointer;
 }
 
 .text-format {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.text-format #sample-text {
+  color: black;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.text-format #edit-hightlight {
+  background: #1b45df;
+  border: none;
+  border-radius: 30px;
+  font-size: 28px;
+}
+
+.text-format #sample-text-bg-button:hover {
+  cursor: pointer;
+}
+
+.text-format #edit-hightlight:hover {
+  cursor: pointer;
 }
 
 /* FOOTER */
