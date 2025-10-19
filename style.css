@@ -129,12 +129,23 @@ aside button {
 main {
   grid-area: main;
   margin-top: 30px;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 main .main-header {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  color: white;
+  padding: 5px 20px;
+}
+
+.text-format {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 /* FOOTER */
