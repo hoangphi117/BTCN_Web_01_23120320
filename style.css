@@ -28,8 +28,7 @@ h1 {
   grid-template-columns: 256px 1fr;
   grid-template-rows: 66px auto 33px;
   min-height: 100vh;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #f6f7fb;
   position: relative;
 }
 
@@ -226,6 +225,23 @@ main .dd-header {
   flex-shrink: 0;
 }
 
+.dd-header select {
+  padding: 8px;
+}
+
+.dd-header button {
+  color: white;
+  background-color: #5078e7;
+  border: none;
+  padding: 8px;
+  border-radius: 40px;
+  font-size: 18px;
+}
+
+.add-button {
+  padding-right: 40%;
+}
+
 .dd-content {
   display: flex;
   flex-grow: 1;
@@ -238,4 +254,11 @@ main .dd-header {
 footer {
   grid-area: footer;
   text-align: center;
+  background-color: #f8e3b6;
+  margin-top: 10px;
+  color: orange;
+}
+
+footer a {
+  color: orange;
 }
