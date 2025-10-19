@@ -112,15 +112,17 @@ aside button {
   font-size: 24px;
 }
 
-.news p {
+.news .news-content {
+  display: none;
   color: #1b45df;
+  padding: 2px 8px;
 }
 
-.toggle-btn-left {
+.toggle-expand {
   cursor: pointer;
 }
 
-.toggle-btn-right {
+.toggle-move {
   cursor: ns-resize;
   font-size: 22px;
   font-weight: 700;
@@ -176,64 +178,20 @@ main .main-header h2 {
 }
 
 .text-controls button {
-  background-color: #5078e7;
+  background: linear-gradient(to bottom, #26acff, #707fd7);
   border-radius: 20px;
   border: none;
   color: white;
-  padding: 5px 10px;
+  padding: 8px 12px;
 }
 
 .text-controls button:hover {
   cursor: pointer;
 }
 
-/* Edit highlight button */
-.dropdown {
-  position: relative;
-  display: inline-block;
+.text-controls button:active {
+  background: linear-gradient(to bottom, #26acff, #65bff7);
 }
-
-.dropdown button {
-  background: #4285f4;
-  font-size: 18px;
-  border: none;
-  border-radius: 20px;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #9dbaf5;
-  color: black;
-  min-width: 180px;
-  border-radius: 6px;
-  padding: 10px;
-  z-index: 1;
-  top: 120%;
-  left: -50px;
-}
-
-.dropdown-content label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 0;
-}
-
-.dropdown-content input[type="color"] {
-  padding: 0;
-  width: 30px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.dropdown.show .dropdown-content {
-  display: block;
-}
-
-/*--------*/
 
 .text-controls input {
   padding-left: 5px;
@@ -259,6 +217,54 @@ main .main-header h2 {
 .text-format #edit-highlight:hover {
   cursor: pointer;
 }
+
+/* Edit highlight button (dropdown) */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown button {
+  background: #4285f4;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #9dbaf5;
+  color: black;
+  min-width: 180px;
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 9999;
+  top: 120%;
+  left: -60px;
+}
+
+.dropdown-content label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.dropdown-content input[type="color"] {
+  padding: 0;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+/*--------*/
 
 .highlight {
   padding: 2px 0px;
@@ -355,13 +361,21 @@ main .dd-header {
 
 /*----*/
 
-.dd-header button {
+.add-button button {
   color: white;
-  background-color: #5078e7;
+  background: linear-gradient(to bottom, #0ea2ff, #707fd7);
   border: none;
   padding: 8px;
   border-radius: 40px;
   font-size: 18px;
+}
+
+.dd-header button:hover {
+  cursor: pointer;
+}
+
+.add-button button:active {
+  background: linear-gradient(to bottom, #707fd7, #65bff7);
 }
 
 .add-button {
@@ -370,7 +384,7 @@ main .dd-header {
   gap: 10px;
 }
 
-.dd-content {
+.add-button .dd-content {
   display: flex;
   flex-grow: 1;
   min-height: 0;

@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const process_text =
     "All men are created equal. They are endowed by their Creator with certain inalienable rights, among them are Life, Liberty, and the pursuit of Happiness. This immortal statement was made in the Declaration of Independence of the United States of America in 1776. In a broader sense, this means: All the peoples on the earth are equal from birth, all the peoples have a right to live, to be happy and free.";
 
+  const news_text =
+    "The whole Vietnamese people, animated by a common purpose, are determined to fight to the bitter end against any attempt by the French colonialists to reconquer their country.";
+
   document.querySelector(".content").textContent = process_text;
+  $(".news-content").text(news_text);
 });
 
 const dropdown = document.getElementById("edit-menu");
@@ -109,5 +113,33 @@ $(function () {
     $sample
       .removeClass("bold italic underline")
       .css({ "background-color": "", color: "" });
+  });
+});
+
+$(function () {
+  $(".toggle-expand").on("click", function () {
+    const $button = $(this);
+
+    const $content = $button.closest(".news").find(".news-content");
+    const $header_bg = $button.parent();
+
+    const $h3 = $button.siblings("h3");
+    const $moveButton = $button.siblings(".toggle-move");
+
+    if ($button.text() === "▶") {
+      $button.text("▼");
+      $content.show();
+      $header_bg.css({ "background-color": "orange" });
+      $h3.css({ color: "#f4e4cd" });
+      $moveButton.css({ color: "#f4e4cd" });
+      $button.css({ color: "#f4e4cd" });
+    } else {
+      $button.text("▶");
+      $content.hide();
+      $header_bg.css({ "background-color": "#f4e4cd" });
+      $h3.css({ color: "#bda9a8" });
+      $moveButton.css({ color: "#bda9a8" });
+      $button.css({ color: "#bda9a8" });
+    }
   });
 });
