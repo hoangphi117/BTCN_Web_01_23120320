@@ -14,17 +14,22 @@ btn.addEventListener("click", (e) => {
 });
 
 $(function () {
-  $("#bold, #italic, #underline, #bg-color").on("change input", function () {
-    let $word = $("#sample-text");
+  $("#bold, #italic, #underline, #bg-color, #sample-text-color-button").on(
+    "change input",
+    function () {
+      let $word = $("#sample-text");
 
-    $word.removeClass("bold italic underline");
+      $word.removeClass("bold italic underline");
 
-    if ($("#bold").is(":checked")) $word.addClass("bold");
-    if ($("#italic").is(":checked")) $word.addClass("italic");
-    if ($("#underline").is(":checked")) $word.addClass("underline");
+      if ($("#bold").is(":checked")) $word.addClass("bold");
+      if ($("#italic").is(":checked")) $word.addClass("italic");
+      if ($("#underline").is(":checked")) $word.addClass("underline");
 
-    let bg = $("#bg-color").val();
+      let bg = $("#bg-color").val();
+      let color = $("#sample-text-color-button").val();
 
-    $word.css("background-color", bg);
-  });
+      $word.css("background-color", bg);
+      $word.css("color", color);
+    }
+  );
 });
