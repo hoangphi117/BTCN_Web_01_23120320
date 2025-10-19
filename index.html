@@ -12,10 +12,10 @@
 
       <nav>
         <a href="#">Menu 1</a>
-        <a href="#">Menu 2</a>
-        <a href="#">Menu 3</a>
-        <a href="#">Menu 4</a>
-        <a href="#">Menu 5</a>
+        <a href="javascript:void(0);">Menu 2</a>
+        <a href="javascript:void(0);">Menu 3</a>
+        <a href="javascript:void(0);">Menu 4</a>
+        <a href="javascript:void(0);">Menu 5</a>
       </nav>
 
       <aside class="side">
@@ -62,19 +62,27 @@
             </div>
             <div class="text-format">
               <p id="sample-text">SampleText</p>
-              <input type="color" id="sample-text-bg-button" />
-              <button id="edit-highlight">🛠️</button>
+              <input type="color" id="sample-text-color-button" />
+              <div class="dropdown" id="edit-menu">
+                <button id="edit-highlight">🛠️</button>
+                <div class="dropdown-content">
+                  <label><input type="checkbox" id="bold" />Bold</label>
+                  <label><input type="checkbox" id="italic" />Italic</label>
+                  <label
+                    ><input type="checkbox" id="underline" />Underline</label
+                  >
+                  <label
+                    ><input
+                      type="color"
+                      value="#ffffff"
+                      id="bg-color"
+                    />Background</label
+                  >
+                </div>
+              </div>
             </div>
           </div>
-          <div class="content">
-            All men are created equal. They are endowed by their Creator with
-            certain inalienable rights, among them are Life, Liberty, and the
-            pursuit of Happiness." This immortal statement was made in the
-            Declaration of Independence of the United States of America in 1776.
-            In a broader sense, this means: All the peoples on the earth are
-            equal from birth, all the peoples have a right to live, to be happy
-            and free.
-          </div>
+          <div class="content"></div>
         </section>
 
         <section class="drag-drop">
@@ -104,9 +112,10 @@
 
       <footer>
         Copyright © &lt;Maarch&gt;
-        <a href="#">Menu 1</a>| <a href="#">Menu 2</a>| <a href="#">Menu 3</a>|
-        <a href="#">Menu 4</a>|
-        <a href="#">Menu 5</a>
+        <a href="#">Menu 1</a>| <a href="javascript:void(0);">Menu 2</a>|
+        <a href="javascript:void(0);">Menu 3</a>|
+        <a href="javascript:void(0);">Menu 4</a>|
+        <a href="javascript:void(0);">Menu 5</a>
       </footer>
     </div>
 

@@ -130,6 +130,18 @@ aside button {
 
 /* Process Text */
 
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 main {
   grid-area: main;
   margin-top: 30px;
@@ -175,6 +187,58 @@ main .main-header h2 {
   cursor: pointer;
 }
 
+/* Edit highlight button */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown button {
+  background: #4285f4;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #eaf1ff;
+  color: black;
+  min-width: 180px;
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 1;
+  top: 120%;
+  left: -50px;
+}
+
+.dropdown-content label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.dropdown-content input[type="color"] {
+  padding: 0;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.dropdown.show .dropdown-content {
+  display: block;
+}
+
+/*--------*/
+
+.text-controls input {
+  padding-left: 5px;
+}
+
 .text-format {
   display: flex;
   flex-direction: row;
@@ -186,13 +250,6 @@ main .main-header h2 {
   background-color: white;
   display: flex;
   align-items: center;
-}
-
-.text-format #edit-highlight {
-  background: #1b45df;
-  border: none;
-  border-radius: 30px;
-  font-size: 28px;
 }
 
 .text-format #sample-text-bg-button:hover {
