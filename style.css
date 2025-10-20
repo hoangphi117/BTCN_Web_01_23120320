@@ -446,6 +446,8 @@ footer a {
 
   /* NAV */
   nav {
+    position: static;
+    transform: none;
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -507,7 +509,13 @@ footer a {
     padding: 6px;
   }
 
-  /* Drag-and-drop */
+  /* Drag & Drop */
+  .add-button {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 0;
+  }
+
   .item-select {
     width: 80px;
   }
