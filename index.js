@@ -335,21 +335,33 @@ $(function () {
   $(document).on("mouseup", function () {
     if (!dragged_element) return;
 
-    dragged_element
-      .css({
-        position: "",
-        width: "",
-        height: "",
-        "z-index": "",
-        left: "",
-        top: "",
-        opacity: "",
-        cursor: "",
-      })
-      .insertAfter(placeholder);
+    const targetOffset = placeholder.offset();
 
-    placeholder.remove();
-    placeholder = null;
-    dragged_element = null;
+    dragged_element.animate(
+      {
+        left: targetOffset.left,
+        top: targetOffset.top,
+        opacity: 1,
+      },
+      150,
+      function () {
+        dragged_element
+          .css({
+            position: "",
+            width: "",
+            height: "",
+            "z-index": "",
+            left: "",
+            top: "",
+            opacity: "",
+            cursor: "",
+          })
+          .insertAfter(placeholder);
+
+        placeholder.remove();
+        placeholder = null;
+        dragged_element = null;
+      }
+    );
   });
 });
