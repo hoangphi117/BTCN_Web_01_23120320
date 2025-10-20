@@ -397,7 +397,7 @@ main .dd-header {
   gap: 10px;
 }
 
-.add-button .dd-content {
+.dd-content {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
