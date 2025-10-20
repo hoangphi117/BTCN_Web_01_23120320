@@ -9,6 +9,43 @@ document.addEventListener("DOMContentLoaded", function () {
   $(".news-content").text(news_text);
 });
 
+// FLIP-based push animation helper
+function capturePushState($container, excludes = []) {
+  const excludeSet = new Set(excludes.map((el) => $(el)[0]));
+  const children = $container
+    .children()
+    .filter(function () {
+      if (excludeSet.has(this)) return false;
+      const $el = $(this);
+      return $el.hasClass("animal-item") || $el.hasClass("news");
+    })
+    .toArray();
+
+  const firstRects = new Map();
+  children.forEach((el) => {
+    firstRects.set(el, el.getBoundingClientRect());
+  });
+
+  return function playPush() {
+    children.forEach((el) => {
+      const last = el.getBoundingClientRect();
+      const first = firstRects.get(el);
+      const dx = first.left - last.left;
+      const dy = first.top - last.top;
+      if (dx || dy) {
+        el.style.transition = "none";
+        el.style.transform = `translate(${dx}px, ${dy}px)`;
+      }
+    });
+    requestAnimationFrame(() => {
+      children.forEach((el) => {
+        el.style.transition = "";
+        el.style.transform = "";
+      });
+    });
+  };
+}
+
 //nut lua chon kieu highlight
 const dropdown = document.getElementById("edit-menu");
 const btn = document.getElementById("edit-highlight");
@@ -206,12 +243,14 @@ $(function () {
       const rect = newsBelow[0].getBoundingClientRect(); //lay top, left, width, height cua newsBelow[0]
       const midpoint = rect.top + rect.height / 2;
 
+      const playPush = capturePushState($(".side"), [dragged_element, placeholder]);
       // chen placeholder (hien thi vi tri se duoc dat xuong)
       if (e.clientY < midpoint) {
         newsBelow.before(placeholder);
       } else {
         newsBelow.after(placeholder);
       }
+      playPush();
     }
   });
 
@@ -326,11 +365,13 @@ $(function () {
     if ($target.length) {
       const rect = $target[0].getBoundingClientRect();
       const isBefore = e.clientY < rect.top + rect.height / 2;
+      const playPush = capturePushState($(".dd-content"), [dragged, placeholder]);
       if (isBefore) {
         $target.before(placeholder);
       } else {
         $target.after(placeholder);
       }
+      playPush();
     }
   });
 
