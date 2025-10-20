@@ -236,7 +236,7 @@ $(function () {
   });
 });
 
-//Xu ly them 12 con giap
+//Drag-and-drop item
 
 $(function () {
   $("#expand-options").on("click", function () {
@@ -272,5 +272,75 @@ $(function () {
     if (selected) {
       $(".dd-content").append(`<div class="animal-item">${selected}</div>`);
     }
+  });
+
+  let dragged_element = null;
+  let offsetX, offsetY;
+
+  $(".dd-content").on("mousedown", ".animal-item", function (e) {
+    dragged_element = $(this);
+    const pos = dragged_element.offset();
+
+    offsetX = e.pageX - pos.left;
+    offsetY = e.pageY - pos.top;
+
+    dragged_element.css({
+      position: "fixed",
+      width: dragged_element.outerWidth(),
+      "z-index": "1000",
+    });
+
+    e.preventDefault();
+    e.stopPropagation();
+  });
+
+  $(document).on("mousemove", function (e) {
+    if (!dragged_element) return;
+
+    // di chuyen element theo chuot
+    dragged_element.css({
+      left: e.pageX - offsetX,
+      top: e.pageY - offsetY,
+    });
+  });
+
+  $(document).on("mouseup", function (e) {
+    if (!dragged_element) return;
+
+    const dropZone = $(".dd-content");
+    const dropRect = dropZone[0].getBoundingClientRect();
+
+    const isInsideDropZone =
+      e.clientX >= dropRect.left &&
+      e.clientX <= dropRect.right &&
+      e.clientY >= dropRect.top &&
+      e.clientY <= dropRect.bottom;
+
+    if (isInsideDropZone) {
+      dragged_element.css({
+        position: "",
+        width: "",
+        "z-index": "",
+        opacity: "",
+        left: "",
+        top: "",
+      });
+
+      if (!dragged_element.parent().is(".dd-content")) {
+        dropZone.append(dragged_element);
+      }
+    } else {
+      //reset vi tri cu neu tha ra ngoai
+      dragged_element.css({
+        position: "",
+        width: "",
+        "z-index": "",
+        opacity: "",
+        left: "",
+        top: "",
+      });
+    }
+
+    dragged_element = null;
   });
 });

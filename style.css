@@ -308,6 +308,7 @@ main .dd-header {
   border-radius: 3px;
   background: radial-gradient(circle, #ffffff, #2d539a);
   margin: 3px;
+  cursor: default;
 }
 
 .item-select {
