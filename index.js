@@ -167,13 +167,12 @@ $(function () {
 
     dragged_element.css({
       position: "fixed",
-      width: dragged_element.outerWidth(),
+      width: dragged_element.outerWidth(), //giu nguyen kich thuoc khi keo
       "z-index": "1000",
-      "pointer-events": "none",
       opacity: "0.5",
     });
 
-    // chen placeholder vao vi tri cu~
+    // chen placeholder vao vi tr cu~
     dragged_element.after(placeholder);
 
     dragged_element.css({
@@ -183,5 +182,34 @@ $(function () {
 
     e.preventDefault();
     e.stopPropagation();
+  });
+
+  $(document).on("mousemove", function (e) {
+    if (!dragged_element) return;
+
+    // di chuyen element theo chuot
+    dragged_element.css({
+      left: e.pageX - offsetX,
+      top: e.pageY - offsetY,
+    });
+
+    // tim phan tu o duoi con tro chuot
+    const elementsBelow = $(document.elementsFromPoint(e.clientX, e.clientY));
+    const newsBelow = elementsBelow
+      .filter(".news")
+      .not(dragged_element)
+      .first();
+
+    if (newsBelow.length && newsBelow[0] !== placeholder[0]) {
+      const rect = newsBelow[0].getBoundingClientRect(); //lay top, left, width, height cua newsBelow[0]
+      const midpoint = rect.top + rect.height / 2;
+
+      // chen placeholder (hien thi vi tri se duoc dat xuong)
+      if (e.clientY < midpoint) {
+        newsBelow.before(placeholder);
+      } else {
+        newsBelow.after(placeholder);
+      }
+    }
   });
 });
