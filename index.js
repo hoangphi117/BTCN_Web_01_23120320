@@ -212,4 +212,24 @@ $(function () {
       }
     }
   });
+
+  $(document).on("mouseup", function () {
+    if (!dragged_element) return;
+
+    // Reset style
+    dragged_element.css({
+      position: "",
+      width: "",
+      "z-index": "",
+      opacity: "",
+      left: "",
+      top: "",
+    });
+
+    // Dat phan tu dang keo vao vi tri placeholder
+    placeholder.replaceWith(dragged_element);
+
+    dragged_element = null;
+    placeholder = null;
+  });
 });
