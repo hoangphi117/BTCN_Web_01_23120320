@@ -9,6 +9,21 @@ document.addEventListener("DOMContentLoaded", function () {
   $(".news-content").text(news_text);
 });
 
+//dong bo trang thai cho nav va footer
+$(function () {
+  $("nav a, footer a").on("click", function (e) {
+    e.preventDefault();
+
+    const menuText = $(this).text().trim();
+
+    $("nav a, footer a").removeClass("active");
+
+    $(`nav a:contains(${menuText}), footer a:contains(${menuText})`).addClass(
+      "active"
+    );
+  });
+});
+
 //nut lua chon kieu highlight
 const dropdown = document.getElementById("edit-menu");
 const btn = document.getElementById("edit-highlight");
@@ -291,7 +306,6 @@ $(function () {
       width: dragged.outerWidth(),
       height: dragged.outerHeight(),
       "z-index": 1000,
-      opacity: 0.85,
       left: e.pageX - offsetX,
       top: e.pageY - offsetY,
       cursor: "default",
@@ -326,6 +340,7 @@ $(function () {
     if ($target.length) {
       const rect = $target[0].getBoundingClientRect();
       const isBefore = e.clientY < rect.top + rect.height / 2;
+
       if (isBefore) {
         $target.before(placeholder);
       } else {
