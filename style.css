@@ -406,6 +406,21 @@ main .dd-header {
   padding: 20px;
 }
 
+.animal-item {
+  width: 150px;
+  height: 100px;
+  font-size: 32px;
+  transition: transform 3s ease;
+}
+
+.placeholder {
+  width: 150px;
+  height: 100px;
+  border: 3px dashed #ccc;
+  background: none;
+  color: transparent;
+}
+
 /* FOOTER */
 
 footer {
@@ -524,6 +539,12 @@ footer a {
     width: 100px;
     height: 80px;
     font-size: 32px;
+  }
+
+  .placeholder {
+    border: 3px dashed #ccc;
+    background: none;
+    color: transparent;
   }
 
   .dd-content {

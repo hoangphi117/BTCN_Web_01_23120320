@@ -270,74 +270,76 @@ $(function () {
     }
   });
 
-  let dragged_element = null;
+  let dragged = null;
   let placeholder = null;
   let offsetX = 0,
     offsetY = 0;
 
   $(".dd-content").on("mousedown", ".animal-item", function (e) {
-    dragged_element = $(this);
-
-    const pos = dragged_element.offset();
+    dragged = $(this);
+    const pos = dragged.offset();
     offsetX = e.pageX - pos.left;
     offsetY = e.pageY - pos.top;
 
-    placeholder = dragged_element.clone();
-    placeholder.css({
-      background: "none",
-      color: "transparent",
-      visibility: "visible",
-      border: "3px dashed #ccc",
-    });
+    placeholder = $("<div class='placeholder'></div>").height(
+      dragged.outerHeight()
+    );
+    dragged.after(placeholder);
 
-    dragged_element.after(placeholder);
-
-    dragged_element.css({
+    dragged.css({
       position: "fixed",
-      width: dragged_element.outerWidth(),
-      height: dragged_element.outerHeight(),
+      width: dragged.outerWidth(),
+      height: dragged.outerHeight(),
       "z-index": 1000,
-      opacity: 0.8,
+      opacity: 0.85,
       left: e.pageX - offsetX,
       top: e.pageY - offsetY,
-      cursor: "grabbing",
+      cursor: "default",
+      transition: "none",
     });
 
     e.preventDefault();
   });
 
-  $(document).on("mousemove", function (e) {
-    if (!dragged_element) return;
+  // Tim cac .animal-item khac tai toa do (x,y)
+  function findItemAtPoint(x, y) {
+    const elems = document.elementsFromPoint(x, y);
+    for (let el of elems) {
+      const $el = $(el).closest(".animal-item");
+      if ($el.length && !$el.is(dragged) && !$el.is(placeholder)) {
+        return $el;
+      }
+    }
+    return $();
+  }
 
-    dragged_element.css({
+  $(document).on("mousemove", function (e) {
+    if (!dragged) return;
+
+    // di chuyen phan tu duoc keo
+    dragged.css({
       left: e.pageX - offsetX,
       top: e.pageY - offsetY,
     });
 
-    const itemBelow = $(document.elementsFromPoint(e.clientX, e.clientY))
-      .filter(".animal-item")
-      .not(dragged_element)
-      .not(".placeholder")
-      .first();
-
-    if (itemBelow.length) {
-      const rect = itemBelow[0].getBoundingClientRect();
+    const $target = findItemAtPoint(e.clientX, e.clientY);
+    if ($target.length) {
+      const rect = $target[0].getBoundingClientRect();
       const isBefore = e.clientY < rect.top + rect.height / 2;
-
       if (isBefore) {
-        itemBelow.before(placeholder);
+        $target.before(placeholder);
       } else {
-        itemBelow.after(placeholder);
+        $target.after(placeholder);
       }
     }
   });
 
   $(document).on("mouseup", function () {
-    if (!dragged_element) return;
+    if (!dragged) return;
 
     const targetOffset = placeholder.offset();
 
-    dragged_element.animate(
+    dragged.animate(
       {
         left: targetOffset.left,
         top: targetOffset.top,
@@ -345,7 +347,7 @@ $(function () {
       },
       150,
       function () {
-        dragged_element
+        dragged
           .css({
             position: "",
             width: "",
@@ -355,12 +357,13 @@ $(function () {
             top: "",
             opacity: "",
             cursor: "",
+            transition: "",
           })
           .insertAfter(placeholder);
 
         placeholder.remove();
         placeholder = null;
-        dragged_element = null;
+        dragged = null;
       }
     );
   });
