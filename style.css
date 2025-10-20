@@ -425,3 +425,115 @@ footer {
 footer a {
   color: orange;
 }
+
+@media (max-width: 576px) {
+  .container {
+    grid-template-areas:
+      "header"
+      "nav"
+      "side"
+      "main"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  header {
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  /* NAV */
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px;
+    height: auto;
+    background: #bcd2f9;
+    box-shadow: none;
+  }
+
+  nav a {
+    font-size: 16px;
+    color: #000;
+  }
+
+  /* ASIDE */
+  aside {
+    margin: 10px 0;
+  }
+
+  .news-header {
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+
+  /* MAIN */
+  main {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .process-text,
+  .drag-drop {
+    border-width: 1px;
+  }
+
+  .main-header h2,
+  .dd-header h2 {
+    font-size: 16px;
+  }
+
+  .text-controls button,
+  .add-button #add-new {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .text-controls input {
+    width: 100px;
+  }
+
+  .text-format {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #sample-text {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  /* Drag-and-drop */
+  .item-select {
+    width: 80px;
+  }
+
+  .animal-item {
+    width: 100px;
+    height: 80px;
+    font-size: 32px;
+  }
+
+  .dd-content {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  /* FOOTER */
+  footer {
+    flex-direction: row;
+    font-size: 14px;
+    text-align: center;
+    gap: 4px;
+    padding: 6px;
+  }
+
+  footer a {
+    display: inline-block;
+    margin: 2px;
+  }
+}
