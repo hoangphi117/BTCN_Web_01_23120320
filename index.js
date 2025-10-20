@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $(".news-content").text(news_text);
 });
 
+//nut lua chon kieu highlight
 const dropdown = document.getElementById("edit-menu");
 const btn = document.getElementById("edit-highlight");
 
@@ -17,6 +18,7 @@ btn.addEventListener("click", (e) => {
   dropdown.classList.toggle("show");
 });
 
+//sample text
 $(function () {
   const $sample = $("#sample-text");
   const $content = $(".content");
@@ -116,6 +118,7 @@ $(function () {
   });
 });
 
+//dong mo news
 $(function () {
   $(".toggle-expand").on("click", function () {
     const $button = $(this);
@@ -144,8 +147,7 @@ $(function () {
   });
 });
 
-//drag-and-drop
-
+//drag-and-drop News
 $(function () {
   let dragged_element = null;
   let placeholder = null;
@@ -231,5 +233,44 @@ $(function () {
 
     dragged_element = null;
     placeholder = null;
+  });
+});
+
+//Xu ly them 12 con giap
+
+$(function () {
+  $("#expand-options").on("click", function () {
+    const $expand = $(this);
+
+    const $content = $expand.closest(".add-button").find(".options");
+
+    if ($expand.text() === "▼") {
+      $expand.text("▲");
+      $content.show();
+    } else {
+      $expand.text("▼");
+      $content.hide();
+    }
+  });
+
+  $(".options li").on("click", function () {
+    $(".options li").removeClass("selected-option");
+
+    $(this).addClass("selected-option");
+
+    $(".selected").contents().first()[0].textContent = $(this).text() + " ";
+
+    const $content = $(this).closest(".add-button").find(".options");
+    const $expand = $(this).closest(".add-button").find("#expand-options");
+    $expand.text("▼");
+    $content.hide();
+  });
+
+  $(".add-button #add-new").on("click", function () {
+    const selected = $(".options .selected-option").text();
+
+    if (selected) {
+      $(".dd-content").append(`<div class="animal-item">${selected}</div>`);
+    }
   });
 });

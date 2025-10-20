@@ -298,6 +298,18 @@ main .dd-header {
 
 /*Nut lua chon con giap */
 
+.animal-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 100px;
+  font-size: 48px;
+  border-radius: 3px;
+  background: radial-gradient(circle, #ffffff, #2d539a);
+  margin: 3px;
+}
+
 .item-select {
   width: 100px;
   position: relative;
@@ -309,7 +321,7 @@ main .dd-header {
   justify-content: space-between;
   border: 2px solid #4a90e2;
   border-radius: 10px;
-  padding: 6px 10px;
+  padding: 6px 15px;
   background: white;
   cursor: pointer;
   transition: 0.3s;
@@ -322,18 +334,15 @@ main .dd-header {
   margin: 0 8px;
 }
 
-.arrow {
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid green;
+#expand-options {
+  border: none;
+  background-color: white;
 }
 
 .options {
   display: none;
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 0;
   width: 100%;
   border: 1px solid #ccc;
@@ -349,7 +358,7 @@ main .dd-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 0;
+  padding: 6px 0px;
   cursor: pointer;
 }
 
@@ -365,7 +374,7 @@ main .dd-header {
 
 /*----*/
 
-.add-button button {
+.add-button #add-new {
   color: white;
   background: linear-gradient(to bottom, #0ea2ff, #707fd7);
   border: none;
@@ -374,11 +383,11 @@ main .dd-header {
   font-size: 18px;
 }
 
-.dd-header button:hover {
+.add-button button:hover {
   cursor: pointer;
 }
 
-.add-button button:active {
+.add-button #add-new:active {
   background: linear-gradient(to bottom, #707fd7, #65bff7);
 }
 
@@ -390,6 +399,7 @@ main .dd-header {
 
 .add-button .dd-content {
   display: flex;
+  flex-wrap: wrap;
   flex-grow: 1;
   min-height: 0;
   padding: 10px;
