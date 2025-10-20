@@ -309,6 +309,7 @@ main .dd-header {
   background: radial-gradient(circle, #ffffff, #2d539a);
   margin: 3px;
   cursor: default;
+  box-sizing: border-box;
 }
 
 .item-select {
@@ -401,9 +402,8 @@ main .dd-header {
 .dd-content {
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1;
-  min-height: 0;
-  padding: 10px;
+  gap: 6px;
+  padding: 20px;
 }
 
 /* FOOTER */

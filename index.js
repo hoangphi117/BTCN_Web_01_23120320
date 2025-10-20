@@ -241,7 +241,6 @@ $(function () {
 $(function () {
   $("#expand-options").on("click", function () {
     const $expand = $(this);
-
     const $content = $expand.closest(".add-button").find(".options");
 
     if ($expand.text() === "▼") {
@@ -255,9 +254,7 @@ $(function () {
 
   $(".options li").on("click", function () {
     $(".options li").removeClass("selected-option");
-
     $(this).addClass("selected-option");
-
     $(".selected").contents().first()[0].textContent = $(this).text() + " ";
 
     const $content = $(this).closest(".add-button").find(".options");
@@ -268,79 +265,91 @@ $(function () {
 
   $(".add-button #add-new").on("click", function () {
     const selected = $(".options .selected-option").text();
-
     if (selected) {
       $(".dd-content").append(`<div class="animal-item">${selected}</div>`);
     }
   });
 
   let dragged_element = null;
-  let offsetX, offsetY;
+  let placeholder = null;
+  let offsetX = 0,
+    offsetY = 0;
 
   $(".dd-content").on("mousedown", ".animal-item", function (e) {
     dragged_element = $(this);
-    const pos = dragged_element.offset();
 
+    const pos = dragged_element.offset();
     offsetX = e.pageX - pos.left;
     offsetY = e.pageY - pos.top;
+
+    placeholder = dragged_element.clone();
+    placeholder.css({
+      background: "none",
+      color: "transparent",
+      visibility: "visible",
+      border: "3px dashed #ccc",
+    });
+
+    dragged_element.after(placeholder);
 
     dragged_element.css({
       position: "fixed",
       width: dragged_element.outerWidth(),
-      "z-index": "1000",
+      height: dragged_element.outerHeight(),
+      "z-index": 1000,
+      opacity: 0.8,
+      left: e.pageX - offsetX,
+      top: e.pageY - offsetY,
+      cursor: "grabbing",
     });
 
     e.preventDefault();
-    e.stopPropagation();
   });
 
   $(document).on("mousemove", function (e) {
     if (!dragged_element) return;
 
-    // di chuyen element theo chuot
     dragged_element.css({
       left: e.pageX - offsetX,
       top: e.pageY - offsetY,
     });
+
+    const itemBelow = $(document.elementsFromPoint(e.clientX, e.clientY))
+      .filter(".animal-item")
+      .not(dragged_element)
+      .not(".placeholder")
+      .first();
+
+    if (itemBelow.length) {
+      const rect = itemBelow[0].getBoundingClientRect();
+      const isBefore = e.clientY < rect.top + rect.height / 2;
+
+      if (isBefore) {
+        itemBelow.before(placeholder);
+      } else {
+        itemBelow.after(placeholder);
+      }
+    }
   });
 
-  $(document).on("mouseup", function (e) {
+  $(document).on("mouseup", function () {
     if (!dragged_element) return;
 
-    const dropZone = $(".dd-content");
-    const dropRect = dropZone[0].getBoundingClientRect();
-
-    const isInsideDropZone =
-      e.clientX >= dropRect.left &&
-      e.clientX <= dropRect.right &&
-      e.clientY >= dropRect.top &&
-      e.clientY <= dropRect.bottom;
-
-    if (isInsideDropZone) {
-      dragged_element.css({
+    dragged_element
+      .css({
         position: "",
         width: "",
+        height: "",
         "z-index": "",
-        opacity: "",
         left: "",
         top: "",
-      });
-
-      if (!dragged_element.parent().is(".dd-content")) {
-        dropZone.append(dragged_element);
-      }
-    } else {
-      //reset vi tri cu neu tha ra ngoai
-      dragged_element.css({
-        position: "",
-        width: "",
-        "z-index": "",
         opacity: "",
-        left: "",
-        top: "",
-      });
-    }
+        cursor: "",
+      })
+      .insertAfter(placeholder);
 
+    placeholder.remove();
+    placeholder = null;
     dragged_element = null;
   });
 });
